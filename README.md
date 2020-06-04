@@ -1,8 +1,9 @@
 # simple-playlist
+[![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
 
 A Simple Playlist Mobile App
 
-### Dependendies
+### Dependencies
 - React Native
 - XCode
 - Android Studio
