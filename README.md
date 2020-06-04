@@ -1,8 +1,12 @@
 # simple-playlist
 
-Latest build: [![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
+[![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
 
 A Simple Playlist Mobile App
+
+## Features
+- Typescript
+- Automated deployments with Bitrise.io: [![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
 
 ### Dependencies
 - React Native
@@ -23,4 +27,8 @@ then `cd ios` and `pod install`
 
 
 # Typescript Cheatsheet
+
+# Resources
+- https://github.com/facebook/react-native/issues/4099
+- https://medium.com/@mridultripathi/effectively-change-orientation-in-react-native-and-detect-device-type-8b9f69d669d6
 

@@ -31,13 +31,18 @@ class App extends React.Component {
     screenHeight: Dimensions.get('window').height,
     screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
   };
-  componentDidMount() {
-    Dimensions.addEventListener('change', () => {
-      this.setState({
-        screenHeight: Dimensions.get('window').height,
-        screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
-      });
+  screenSizeChangedHandler = () => {
+    this.setState({
+      screenHeight: Dimensions.get('window').height,
+      screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
     });
+  };
+  componentDidMount() {
+    Dimensions.addEventListener('change', this.screenSizeChangedHandler);
+  }
+  componentWillUnmount() {
+    // Remember to unregister all listeners here and prevent mem-leaks
+    Dimensions.removeEventListener('change', this.screenSizeChangedHandler);
   }
   render() {
     return (
