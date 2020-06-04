@@ -162,3 +162,4 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+ios/codesigndoc_exports
