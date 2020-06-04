@@ -6,10 +6,12 @@ A Simple Playlist Mobile App
 - React Native
 - XCode
 - Android Studio
+- Cocoapods
 
 # Install
 
 `npm install` or `yarn install`
+then `cd ios` and `pod install`
 
 ## Run iOS
 `npx react-native run-ios`

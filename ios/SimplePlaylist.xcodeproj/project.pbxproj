@@ -194,7 +194,6 @@
 				5C64D03D14ADB19ED6023B3B /* Pods-SimplePlaylist-tvOSTests.debug.xcconfig */,
 				77CB780E26C7E3AE2F2E9910 /* Pods-SimplePlaylist-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -642,7 +641,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = systems.llau.ios.SimplePlaylist;
 				PRODUCT_NAME = SimplePlaylist;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -664,7 +663,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = systems.llau.ios.SimplePlaylist;
 				PRODUCT_NAME = SimplePlaylist;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
