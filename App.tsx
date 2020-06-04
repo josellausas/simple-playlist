@@ -8,31 +8,65 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  View,
+  Dimensions,
+} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Home from './src/components/Home';
 
 declare const global: {HermesInternal: null | {}};
 
-const App = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Home />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+class App extends React.Component {
+  isPortrait = () => {
+    const screen = Dimensions.get('screen');
+    return screen.height >= screen.width;
+  };
+  state = {
+    screenHeight: Dimensions.get('window').height,
+    screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
+  };
+  componentDidMount() {
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        screenHeight: Dimensions.get('window').height,
+        screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
+      });
+    });
+  }
+  render() {
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            contentContainerStyle={styles.contentContainer}
+            style={styles.scrollView}>
+            <View style={[styles.container, {height: this.state.screenHeight}]}>
+              <Home />
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
+  container: {
+    backgroundColor: '#ccc',
   },
 });
 
