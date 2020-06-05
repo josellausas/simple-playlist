@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  GestureResponderEvent,
+} from 'react-native';
 import {Playlist} from '../@types/Playlists';
 
 interface PlaylistsProps {
@@ -8,6 +15,10 @@ interface PlaylistsProps {
 
 export default class Playlists extends React.Component<PlaylistsProps, {}> {
   state = {};
+  onSelectPlaylist = (_event: GestureResponderEvent) => {
+    // TODO: Navigate to Playlist Detail Screen
+    
+  };
   render() {
     const {lists} = this.props;
     return (
@@ -15,8 +26,17 @@ export default class Playlists extends React.Component<PlaylistsProps, {}> {
         <Text>{`${lists.length} Playlists`}</Text>
         {lists.map((pl) => (
           <View key={pl.name}>
-            <Text>{pl.name}</Text>
-            <Text>{`${pl.songs.length} songs`}</Text>
+            <TouchableOpacity
+              onPress={(_e) => {
+                Alert.alert(`Naviate to: ${pl.name}`);
+              }}>
+              <View style={styles.playlistCard}>
+                <Text>{pl.name}</Text>
+                <View style={styles.songsContainer}>
+                  <Text>{`${pl.songs.length} songs`}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
         ))}
       </View>
@@ -25,5 +45,17 @@ export default class Playlists extends React.Component<PlaylistsProps, {}> {
 }
 
 const styles = StyleSheet.create({
-  homeView: {},
+  homeView: {
+    backgroundColor: '#aaa',
+  },
+  playlistCard: {
+    margin: 14,
+    backgroundColor: '#faa',
+  },
+  songsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1aa',
+    minHeight: 40,
+  },
 });

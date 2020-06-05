@@ -24,9 +24,30 @@ import {Playlist as IPlaylist} from './src/@types/Playlists';
 declare const global: {HermesInternal: null | {}};
 
 const samplePlaylists = [
-  {name: 'Playlist 1', songs: [{name: 'Stairway to heaven', selected: false}]},
+  {name: 'Summer', songs: [{name: 'Stairway to heaven', selected: false}]},
   {
-    name: 'Playlist 2',
+    name: 'Chill',
+    songs: [
+      {name: 'Stairway to heaven', selected: false},
+      {name: 'Tesselate', selected: false},
+    ],
+  },
+  {
+    name: 'Driving',
+    songs: [
+      {name: 'Stairway to heaven', selected: false},
+      {name: 'Tesselate', selected: false},
+    ],
+  },
+  {
+    name: '2019',
+    songs: [
+      {name: 'Stairway to heaven', selected: false},
+      {name: 'Tesselate', selected: false},
+    ],
+  },
+  {
+    name: 'Programming',
     songs: [
       {name: 'Stairway to heaven', selected: false},
       {name: 'Tesselate', selected: false},
