@@ -4,19 +4,32 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Alert,
   GestureResponderEvent,
 } from 'react-native';
-import {Playlist} from '../@types/Playlists';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
 
-interface PlaylistsProps {
+import {Playlist, RootStackParamList} from '../@types/Playlists';
+import {PlaylistsData} from '../sampleData';
+interface PlaylistsState {
   lists: Playlist[];
 }
 
-export default class Playlists extends React.Component<PlaylistsProps, {}> {
-  state = {};
+interface PlaylistsProps {
+  navigation: StackNavigationProp<RootStackParamList, 'Playlists'>;
+  route: RouteProp<RootStackParamList, 'Playlists'>;
+}
+
+export default class Playlists extends React.Component<
+  PlaylistsProps,
+  PlaylistsState
+> {
+  state = {
+    lists: PlaylistsData as Playlist[],
+  };
   render() {
-    const {lists} = this.props;
+    const {lists} = this.state;
+    const {navigation} = this.props;
     return (
       <View style={styles.homeView}>
         <Text>{`${lists.length} Playlists`}</Text>
@@ -24,7 +37,7 @@ export default class Playlists extends React.Component<PlaylistsProps, {}> {
           <View key={pl.name}>
             <TouchableOpacity
               onPress={(_e: GestureResponderEvent) => {
-                Alert.alert(`Naviate to: ${pl.name}`);
+                navigation.navigate('Details', pl);
               }}>
               <View style={styles.playlistCard}>
                 <Text>{pl.name}</Text>

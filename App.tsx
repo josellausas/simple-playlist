@@ -15,53 +15,25 @@ import {
   StatusBar,
   View,
   Dimensions,
+  Text,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import Playlists from './src/components/Playlists';
-import {Playlist as IPlaylist} from './src/@types/Playlists';
+import {RootStackParamList} from './src/@types/Playlists';
+import PlaylistDetails from './src/components/PlaylistDetail';
 
 declare const global: {HermesInternal: null | {}};
-
-const samplePlaylists = [
-  {name: 'Summer', songs: [{name: 'Stairway to heaven', selected: false}]},
-  {
-    name: 'Chill',
-    songs: [
-      {name: 'Stairway to heaven', selected: false},
-      {name: 'Tesselate', selected: false},
-    ],
-  },
-  {
-    name: 'Driving',
-    songs: [
-      {name: 'Stairway to heaven', selected: false},
-      {name: 'Tesselate', selected: false},
-    ],
-  },
-  {
-    name: '2019',
-    songs: [
-      {name: 'Stairway to heaven', selected: false},
-      {name: 'Tesselate', selected: false},
-    ],
-  },
-  {
-    name: 'Programming',
-    songs: [
-      {name: 'Stairway to heaven', selected: false},
-      {name: 'Tesselate', selected: false},
-    ],
-  },
-];
 
 interface AppState {
   screenHeight: number;
   screenOrientation: string;
-  playlists: IPlaylist[];
 }
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 class App extends React.Component<{}, AppState> {
   isPortrait = () => {
@@ -72,7 +44,6 @@ class App extends React.Component<{}, AppState> {
   state = {
     screenHeight: Dimensions.get('window').height,
     screenOrientation: this.isPortrait() ? 'portrait' : 'landscape',
-    playlists: samplePlaylists,
   };
 
   screenSizeChangedHandler = () => {
@@ -94,17 +65,24 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const {screenHeight, playlists} = this.state;
+    const {screenHeight} = this.state;
     return (
       <NavigationContainer>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
+          <View style={styles.titleContainer}>
+            <Text>Simple Playlist App</Text>
+            <Text>by Jose Llausás</Text>
+          </View>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             contentContainerStyle={styles.contentContainer}
             style={styles.scrollView}>
             <View style={[styles.container, {height: screenHeight}]}>
-              <Playlists lists={playlists} />
+              <Stack.Navigator initialRouteName="Playlists">
+                <Stack.Screen name="Playlists" component={Playlists} />
+                <Stack.Screen name="Details" component={PlaylistDetails} />
+              </Stack.Navigator>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -122,6 +100,12 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#ccc',
+  },
+  titleContainer: {
+    minHeight: 80,
+    backgroundColor: '#888',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

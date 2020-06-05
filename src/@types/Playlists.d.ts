@@ -7,3 +7,8 @@ export interface Playlist {
   name: string;
   songs: Song[];
 }
+
+export type RootStackParamList = {
+  Playlists: undefined;
+  Details: Playlist;
+};
