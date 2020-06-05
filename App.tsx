@@ -17,6 +17,8 @@ import {
   Dimensions,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 
 import Playlists from './src/components/Playlists';
 import {Playlist as IPlaylist} from './src/@types/Playlists';
@@ -94,7 +96,7 @@ class App extends React.Component<{}, AppState> {
   render() {
     const {screenHeight, playlists} = this.state;
     return (
-      <>
+      <NavigationContainer>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
           <ScrollView
@@ -106,7 +108,7 @@ class App extends React.Component<{}, AppState> {
             </View>
           </ScrollView>
         </SafeAreaView>
-      </>
+      </NavigationContainer>
     );
   }
 }
