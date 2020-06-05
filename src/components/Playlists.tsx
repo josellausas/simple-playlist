@@ -15,10 +15,6 @@ interface PlaylistsProps {
 
 export default class Playlists extends React.Component<PlaylistsProps, {}> {
   state = {};
-  onSelectPlaylist = (_event: GestureResponderEvent) => {
-    // TODO: Navigate to Playlist Detail Screen
-    
-  };
   render() {
     const {lists} = this.props;
     return (
@@ -27,7 +23,7 @@ export default class Playlists extends React.Component<PlaylistsProps, {}> {
         {lists.map((pl) => (
           <View key={pl.name}>
             <TouchableOpacity
-              onPress={(_e) => {
+              onPress={(_e: GestureResponderEvent) => {
                 Alert.alert(`Naviate to: ${pl.name}`);
               }}>
               <View style={styles.playlistCard}>

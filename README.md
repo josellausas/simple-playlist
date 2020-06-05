@@ -1,12 +1,14 @@
 # simple-playlist
 
 [![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
+![Tests](https://github.com/josellausas/simple-playlist/workflows/Tests/badge.svg)
 
 A Simple Playlist Mobile App
 
 ## Features
 - Typescript
 - Automated deployments with Bitrise.io: [![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
+- Automated tests with github actions: ![Tests](https://github.com/josellausas/simple-playlist/workflows/Tests/badge.svg)
 
 ### Dependencies
 - React Native
