@@ -33,35 +33,40 @@ const loadSongs = (songs: ISong[], playlist: Playlist): Map<string, Song> => {
 };
 
 export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
-  songs = loadSongs(SongData, this.props.route.params.playlist);
   state = {
-    songMap: this.songs,
+    songMap: loadSongs(SongData, this.props.route.params.playlist),
     isDirty: false,
   };
+
+  saveButton = (): Element => (
+    <Button
+      onPress={() => {
+        Alert.alert('Save Success!');
+        this.setState({isDirty: false});
+        this.props.navigation.goBack();
+      }}
+      title="Save"
+    />
+  );
+
+  backButton = (): Element => (
+    <Button
+      onPress={() => {
+        if (this.state.isDirty) {
+          Alert.alert('Forgot to Save changes?');
+          this.setState({isDirty: false});
+        } else {
+          this.props.navigation.goBack();
+        }
+      }}
+      title={'Back'}
+    />
+  );
+
   componentDidMount() {
     this.props.navigation.setOptions({
-      headerRight: () => (
-        <Button
-          onPress={() => {
-            Alert.alert('Save goes here');
-            this.setState({isDirty: false});
-          }}
-          title="Save"
-        />
-      ),
-      headerLeft: () => (
-        <Button
-          onPress={() => {
-            if (this.state.isDirty) {
-              Alert.alert('Forgot to Save changes?');
-              this.setState({isDirty: false});
-            } else {
-              this.props.navigation.goBack();
-            }
-          }}
-          title={'Back'}
-        />
-      ),
+      headerRight: this.saveButton,
+      headerLeft: this.backButton,
     });
   }
 
@@ -75,16 +80,9 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
         song={s}
         isSelected={s.isSelected}
         onPress={(_e: any, id: string) => {
-          this.setState({isDirty: true});
-          const song = songMap.get(id);
-          if (song) {
-            song.isSelected = !song.isSelected;
-            songMap.set(id, song);
-            this.setState({songMap});
-          } else {
-            // TODO: Report to Sentry
-            console.error(`Song ID (${id}) was not found`);
-          }
+          s.isSelected = !s.isSelected;
+          songMap.set(id, s);
+          this.setState({isDirty: true, songMap});
         }}
       />
     ));
