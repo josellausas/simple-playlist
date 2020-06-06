@@ -12,16 +12,23 @@ interface DetailsProps {
 }
 
 export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
-  playlist = this.props.route.params as Playlist;
+  state = {
+    playlist: this.props.route.params.playlist,
+  };
   componentDidMount() {
-    this.playlist = this.props.route.params as Playlist;
+    const {playlist} = this.state;
     this.props.navigation.setOptions({
       headerRight: () => (
         <Button
           onPress={() => {
             this.props.navigation.navigate('Edit', {
-              playlist: this.playlist,
+              playlist: playlist,
               songs: SongData,
+              updateList: (list) => {
+                playlist.songs = [...list.songs];
+                this.setState({playlist});
+                this.props.route.params.updateList(playlist);
+              },
             });
           }}
           title="Edit"
@@ -30,24 +37,15 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
     });
   }
   render() {
-    const {navigation} = this.props;
+    const {playlist} = this.state;
     return (
       <View style={styles.songContainer}>
-        <Text>{this.playlist.name}</Text>
+        <Text>{playlist.name}</Text>
         {/* // TODO: Change this to a ListView */}
-        {this.playlist.songs.map((s: ISong) => (
-          <TouchableOpacity
-            key={s.name}
-            onPress={(_e) => {
-              navigation.navigate('Edit', {
-                playlist: this.playlist,
-                songs: SongData,
-              });
-            }}>
-            <View style={styles.songCard}>
-              <Text>{`${s.name}`}</Text>
-            </View>
-          </TouchableOpacity>
+        {playlist.songs.map((s: ISong) => (
+          <View style={styles.songCard} key={s.id}>
+            <Text>{`${s.name}`}</Text>
+          </View>
         ))}
       </View>
     );

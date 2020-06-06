@@ -14,6 +14,10 @@ export interface PlaylistOnDisk {
 
 export type RootStackParamList = {
   Playlists: undefined;
-  Details: Playlist;
-  Edit: {playlist: Playlist; songs: ISong[]};
+  Details: {playlist: Playlist; updateList: (list: Playlist) => void};
+  Edit: {
+    playlist: Playlist;
+    songs: ISong[];
+    updateList: (list: Playlist) => void;
+  };
 };

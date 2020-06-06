@@ -41,7 +41,15 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   saveButton = (): Element => (
     <Button
       onPress={() => {
-        Alert.alert('Save Success!');
+        const {playlist, updateList} = this.props.route.params;
+        const selectedSongs: ISong[] = [];
+        [...this.state.songMap.values()].forEach((s: Song) => {
+          if (s.isSelected) {
+            selectedSongs.push(s);
+          }
+        });
+        playlist.songs = [...selectedSongs];
+        updateList(playlist);
         this.setState({isDirty: false});
         this.props.navigation.goBack();
       }}

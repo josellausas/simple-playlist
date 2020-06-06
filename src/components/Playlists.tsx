@@ -27,6 +27,15 @@ export default class Playlists extends React.Component<
   state = {
     lists: TestPlaylistsData as Playlist[],
   };
+  updateList = (list: Playlist) => {
+    const l = this.state.lists;
+    l.forEach((pl) => {
+      if (pl.name === list.name) {
+        pl.songs = [...list.songs];
+      }
+    });
+    this.setState({lists: l});
+  };
   render() {
     const {lists} = this.state;
     const {navigation} = this.props;
@@ -37,7 +46,10 @@ export default class Playlists extends React.Component<
           <View key={pl.name}>
             <TouchableOpacity
               onPress={(_e: GestureResponderEvent) => {
-                navigation.navigate('Details', pl);
+                navigation.navigate('Details', {
+                  playlist: pl,
+                  updateList: this.updateList,
+                });
               }}>
               <View style={styles.playlistCard}>
                 <Text>{pl.name}</Text>

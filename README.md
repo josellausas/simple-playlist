@@ -35,3 +35,5 @@ then `cd ios` and `pod install`
 - https://medium.com/@mridultripathi/effectively-change-orientation-in-react-native-and-detect-device-type-8b9f69d669d6
 - https://jestjs.io/docs/en/getting-started#using-babel
 - https://jestjs.io/docs/en/webpack
+- https://stackoverflow.com/questions/57595093/cannot-read-property-direction-of-undefined-tests-only
+- https://github.com/facebook/jest/issues/2663
