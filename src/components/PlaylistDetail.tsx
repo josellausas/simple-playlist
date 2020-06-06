@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
@@ -12,6 +12,22 @@ interface DetailsProps {
 }
 
 export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
+  componentDidMount() {
+    const playlist = this.props.route.params as Playlist;
+    this.props.navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => {
+            this.props.navigation.navigate('Edit', {
+              playlist,
+              songs: SongData,
+            });
+          }}
+          title="Edit"
+        />
+      ),
+    });
+  }
   render() {
     const {route, navigation} = this.props;
     const pl = route.params as Playlist;

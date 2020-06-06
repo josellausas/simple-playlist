@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button, Alert} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
@@ -36,22 +36,37 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   state = {
     songMap: this.songs,
   };
+  componentDidMount() {
+    this.props.navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => {
+            Alert.alert('Save goes here');
+          }}
+          title="Save"
+        />
+      ),
+    });
+  }
 
   render() {
     const {route} = this.props;
     const {playlist} = route.params;
     const {songMap} = this.state;
-    const songList = [...songMap.values()].map((x) => (
+    const songList = [...songMap.values()].map((s: Song) => (
       <SongCard
-        key={x.id}
-        song={x}
-        isSelected={x.isSelected}
+        key={s.id}
+        song={s}
+        isSelected={s.isSelected}
         onPress={(_e: any, id: string) => {
           const song = songMap.get(id);
           if (song) {
             song.isSelected = !song.isSelected;
             songMap.set(id, song);
             this.setState({songMap});
+          } else {
+            // TODO: Report to Sentry
+            console.error(`Song ID (${id}) was not found`);
           }
         }}
       />
