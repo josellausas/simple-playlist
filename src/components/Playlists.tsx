@@ -39,8 +39,18 @@ export default class Playlists extends React.Component<
   PlaylistsProps,
   PlaylistsState
 > {
+  onFocusHandleRelease: (() => void) | null = null;
   state = {
     lists: this.loadPlaylistsFromDisk(PlaylistsData),
+  };
+  updateList = (list: Playlist) => {
+    const l = this.state.lists;
+    l.forEach((pl) => {
+      if (pl.name === list.name) {
+        pl.songs = [...list.songs];
+      }
+    });
+    this.setState({lists: l});
   };
   loadPlaylistsFromDisk(playlists: PlaylistOnDisk[]): Playlist[] {
     const songs = loadSongs(SongData);
@@ -51,17 +61,7 @@ export default class Playlists extends React.Component<
       });
       return pobj;
     });
-    // return TestPlaylistsData;
   }
-  updateList = (list: Playlist) => {
-    const l = this.state.lists;
-    l.forEach((pl) => {
-      if (pl.name === list.name) {
-        pl.songs = [...list.songs];
-      }
-    });
-    this.setState({lists: l});
-  };
   render() {
     const {lists} = this.state;
     const {navigation} = this.props;
@@ -74,7 +74,6 @@ export default class Playlists extends React.Component<
               onPress={(_e: GestureResponderEvent) => {
                 navigation.navigate('Details', {
                   playlist: pl,
-                  updateList: this.updateList,
                 });
               }}>
               <View style={styles.playlistCard}>

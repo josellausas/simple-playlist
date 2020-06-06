@@ -38,6 +38,7 @@ const loadSongsAndMarkSelected = (
 };
 
 export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
+  // TODO: Get Song data as props from Parent, since we already loaded them
   state = {
     songMap: loadSongsAndMarkSelected(
       SongData,
@@ -49,20 +50,16 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   saveButton = (): Element => (
     <Button
       onPress={() => {
-        const {playlist, updateList} = this.props.route.params;
-        playlist.songs = [];
-        [...this.state.songMap.values()].forEach((s: Song) => {
-          if (s.isSelected) {
-            playlist.songs.push(s);
-          }
-        });
-        // Change our own state
+        const {playlist} = this.props.route.params;
+        const {songMap} = this.state;
+        playlist.songs = [...songMap.values()].filter(
+          (s: Song) => s.isSelected,
+        );
         this.setState({isDirty: false});
-        // Change parent's state
-        updateList(playlist);
         // TODO: Launch async save to disk here
-        // Navigate back to see changes reflected
-        this.props.navigation.goBack();
+        this.props.navigation.navigate('Details', {
+          playlist: playlist,
+        });
       }}
       title="Save"
     />

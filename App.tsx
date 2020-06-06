@@ -15,7 +15,6 @@ import {
   StatusBar,
   View,
   Dimensions,
-  Text,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import 'react-native-gesture-handler';
@@ -56,12 +55,9 @@ class App extends React.Component<{}, AppState> {
 
   componentDidMount() {
     Dimensions.addEventListener('change', this.screenSizeChangedHandler);
-    // TODO: Load songs from sample data
-    // TODO: Load playlists from sample data
   }
 
   componentWillUnmount() {
-    // TODO: Remember to unregister all listeners here to prevent memory leaks!
     Dimensions.removeEventListener('change', this.screenSizeChangedHandler);
   }
 
@@ -71,17 +67,17 @@ class App extends React.Component<{}, AppState> {
       <NavigationContainer>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
-          {/* <View style={styles.titleContainer}>
-            <Text>Simple Playlist App</Text>
-            <Text>by Jose Llausás</Text>
-          </View> */}
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             contentContainerStyle={styles.contentContainer}
             style={styles.scrollView}>
             <View style={[styles.container, {height: screenHeight}]}>
               <Stack.Navigator initialRouteName="Playlists">
-                <Stack.Screen name="Playlists" component={Playlists} />
+                <Stack.Screen
+                  name="Playlists"
+                  component={Playlists}
+                  initialParams={{playlist: null}}
+                />
                 <Stack.Screen name="Details" component={PlaylistDetails} />
                 <Stack.Screen name="Edit" component={PlaylistEdit} />
               </Stack.Navigator>

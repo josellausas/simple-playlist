@@ -37,3 +37,4 @@ then `cd ios` and `pod install`
 - https://jestjs.io/docs/en/webpack
 - https://stackoverflow.com/questions/57595093/cannot-read-property-direction-of-undefined-tests-only
 - https://github.com/facebook/jest/issues/2663
+- https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state

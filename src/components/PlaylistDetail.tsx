@@ -15,24 +15,30 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
   state = {
     playlist: this.props.route.params.playlist,
   };
+  backButton = () => (
+    <Button
+      onPress={() => {
+        this.props.navigation.navigate('Playlists', {
+          playlist: this.state.playlist,
+        });
+      }}
+      title="Back"
+    />
+  );
+  editButton = () => (
+    <Button
+      onPress={() => {
+        this.props.navigation.navigate('Edit', {
+          playlist: this.state.playlist,
+        });
+      }}
+      title="Edit"
+    />
+  );
   componentDidMount() {
-    const {playlist} = this.state;
     this.props.navigation.setOptions({
-      headerRight: () => (
-        <Button
-          onPress={() => {
-            this.props.navigation.navigate('Edit', {
-              playlist: playlist,
-              updateList: (list) => {
-                playlist.songs = [...list.songs];
-                this.setState({playlist});
-                this.props.route.params.updateList(playlist);
-              },
-            });
-          }}
-          title="Edit"
-        />
-      ),
+      headerRight: this.editButton,
+      headerLeft: this.backButton,
     });
   }
   render() {
@@ -40,7 +46,6 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
     return (
       <View style={styles.songContainer}>
         <Text>{playlist.name}</Text>
-        {/* // TODO: Change this to a ListView */}
         {playlist.songs.map((s: Song) => (
           <View style={styles.songCard} key={s.id}>
             <Text>{`${s.name}`}</Text>
