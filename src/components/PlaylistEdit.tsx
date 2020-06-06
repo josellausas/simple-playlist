@@ -14,6 +14,7 @@ interface DetailsProps {
 
 interface DetailsState {
   songMap: Map<string, Song>;
+  isDirty: boolean;
 }
 
 const loadSongs = (songs: ISong[], playlist: Playlist): Map<string, Song> => {
@@ -35,6 +36,7 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   songs = loadSongs(SongData, this.props.route.params.playlist);
   state = {
     songMap: this.songs,
+    isDirty: false,
   };
   componentDidMount() {
     this.props.navigation.setOptions({
@@ -42,8 +44,22 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
         <Button
           onPress={() => {
             Alert.alert('Save goes here');
+            this.setState({isDirty: false});
           }}
           title="Save"
+        />
+      ),
+      headerLeft: () => (
+        <Button
+          onPress={() => {
+            if (this.state.isDirty) {
+              Alert.alert('Forgot to Save changes?');
+              this.setState({isDirty: false});
+            } else {
+              this.props.navigation.goBack();
+            }
+          }}
+          title={'Back'}
         />
       ),
     });
@@ -59,6 +75,7 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
         song={s}
         isSelected={s.isSelected}
         onPress={(_e: any, id: string) => {
+          this.setState({isDirty: true});
           const song = songMap.get(id);
           if (song) {
             song.isSelected = !song.isSelected;
