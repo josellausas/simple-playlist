@@ -42,15 +42,18 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
     <Button
       onPress={() => {
         const {playlist, updateList} = this.props.route.params;
-        const selectedSongs: ISong[] = [];
+        playlist.songs = [];
         [...this.state.songMap.values()].forEach((s: Song) => {
           if (s.isSelected) {
-            selectedSongs.push(s);
+            playlist.songs.push(s);
           }
         });
-        playlist.songs = [...selectedSongs];
-        updateList(playlist);
+        // Change our own state
         this.setState({isDirty: false});
+        // Change parent's state
+        updateList(playlist);
+        // TODO: Launch async save to disk here
+        // Navigate back to see changes reflected
         this.props.navigation.goBack();
       }}
       title="Save"
