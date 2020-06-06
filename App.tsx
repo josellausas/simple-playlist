@@ -71,10 +71,10 @@ class App extends React.Component<{}, AppState> {
       <NavigationContainer>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
-          <View style={styles.titleContainer}>
+          {/* <View style={styles.titleContainer}>
             <Text>Simple Playlist App</Text>
             <Text>by Jose Llausás</Text>
-          </View>
+          </View> */}
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             contentContainerStyle={styles.contentContainer}
