@@ -25,6 +25,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Playlists from './src/components/Playlists';
 import {RootStackParamList} from './src/@types/Playlists';
 import PlaylistDetails from './src/components/PlaylistDetail';
+import {PlaylistEdit} from './src/components/PlaylistEdit';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -82,6 +83,7 @@ class App extends React.Component<{}, AppState> {
               <Stack.Navigator initialRouteName="Playlists">
                 <Stack.Screen name="Playlists" component={Playlists} />
                 <Stack.Screen name="Details" component={PlaylistDetails} />
+                <Stack.Screen name="Edit" component={PlaylistEdit} />
               </Stack.Navigator>
             </View>
           </ScrollView>

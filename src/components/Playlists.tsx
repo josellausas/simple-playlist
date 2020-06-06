@@ -10,7 +10,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
 import {Playlist, RootStackParamList} from '../@types/Playlists';
-import {PlaylistsData} from '../sampleData';
+import {TestPlaylistsData} from '../sampleData';
 interface PlaylistsState {
   lists: Playlist[];
 }
@@ -25,7 +25,7 @@ export default class Playlists extends React.Component<
   PlaylistsState
 > {
   state = {
-    lists: PlaylistsData as Playlist[],
+    lists: TestPlaylistsData as Playlist[],
   };
   render() {
     const {lists} = this.state;

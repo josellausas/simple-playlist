@@ -1,14 +1,19 @@
-export interface Song {
+export interface ISong {
+  id: string;
   name: string;
-  selected: boolean;
 }
 
 export interface Playlist {
   name: string;
-  songs: Song[];
+  songs: ISong[];
+}
+export interface PlaylistOnDisk {
+  name: string;
+  songIds: string[];
 }
 
 export type RootStackParamList = {
   Playlists: undefined;
   Details: Playlist;
+  Edit: {playlist: Playlist; songs: ISong[]};
 };
