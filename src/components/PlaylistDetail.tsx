@@ -12,14 +12,15 @@ interface DetailsProps {
 }
 
 export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
+  playlist = this.props.route.params as Playlist;
   componentDidMount() {
-    const playlist = this.props.route.params as Playlist;
+    this.playlist = this.props.route.params as Playlist;
     this.props.navigation.setOptions({
       headerRight: () => (
         <Button
           onPress={() => {
             this.props.navigation.navigate('Edit', {
-              playlist,
+              playlist: this.playlist,
               songs: SongData,
             });
           }}
@@ -29,16 +30,19 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
     });
   }
   render() {
-    const {route, navigation} = this.props;
-    const pl = route.params as Playlist;
+    const {navigation} = this.props;
     return (
       <View style={styles.songContainer}>
-        <Text>{pl.name}</Text>
-        {pl.songs.map((s: ISong) => (
+        <Text>{this.playlist.name}</Text>
+        {/* // TODO: Change this to a ListView */}
+        {this.playlist.songs.map((s: ISong) => (
           <TouchableOpacity
             key={s.name}
             onPress={(_e) => {
-              navigation.navigate('Edit', {playlist: pl, songs: SongData});
+              navigation.navigate('Edit', {
+                playlist: this.playlist,
+                songs: SongData,
+              });
             }}>
             <View style={styles.songCard}>
               <Text>{`${s.name}`}</Text>

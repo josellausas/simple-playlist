@@ -33,4 +33,5 @@ then `cd ios` and `pod install`
 # Resources
 - https://github.com/facebook/react-native/issues/4099
 - https://medium.com/@mridultripathi/effectively-change-orientation-in-react-native-and-detect-device-type-8b9f69d669d6
-
+- https://jestjs.io/docs/en/getting-started#using-babel
+- https://jestjs.io/docs/en/webpack
