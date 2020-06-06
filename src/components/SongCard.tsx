@@ -1,20 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-import {ISong} from '../@types/Playlists';
-
-export class Song extends Object {
-  name: string;
-  id: string;
-  isSelected: boolean;
-
-  constructor(s: ISong) {
-    super();
-    this.name = s.name;
-    this.id = s.id;
-    this.isSelected = false;
-  }
-}
+import {Song} from '../objects/Song';
 
 export interface SongCardProps {
   song: Song;

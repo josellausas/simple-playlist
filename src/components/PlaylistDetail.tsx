@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
-import {RootStackParamList, Playlist, ISong} from '../@types/Playlists';
-import {SongData} from '../sampleData';
+import {RootStackParamList} from '../@types/Playlists';
+import {Song} from '../objects/Song';
 
 interface DetailsProps {
   navigation: StackNavigationProp<RootStackParamList, 'Details'>;
@@ -23,7 +23,6 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
           onPress={() => {
             this.props.navigation.navigate('Edit', {
               playlist: playlist,
-              songs: SongData,
               updateList: (list) => {
                 playlist.songs = [...list.songs];
                 this.setState({playlist});
@@ -42,7 +41,7 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
       <View style={styles.songContainer}>
         <Text>{playlist.name}</Text>
         {/* // TODO: Change this to a ListView */}
-        {playlist.songs.map((s: ISong) => (
+        {playlist.songs.map((s: Song) => (
           <View style={styles.songCard} key={s.id}>
             <Text>{`${s.name}`}</Text>
           </View>

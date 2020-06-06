@@ -3,9 +3,11 @@ import {View, Text, StyleSheet, Button, Alert} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
-import {RootStackParamList, Playlist, ISong} from '../@types/Playlists';
+import {RootStackParamList, SongOnDisk} from '../@types/Playlists';
 import {SongData} from '../sampleData';
-import {SongCard, Song} from './SongCard';
+import {SongCard} from './SongCard';
+import {Song} from '../objects/Song';
+import {Playlist} from '../objects/Playlist';
 
 interface DetailsProps {
   navigation: StackNavigationProp<RootStackParamList, 'Edit'>;
@@ -17,9 +19,12 @@ interface DetailsState {
   isDirty: boolean;
 }
 
-const loadSongs = (songs: ISong[], playlist: Playlist): Map<string, Song> => {
+const loadSongs = (
+  songs: SongOnDisk[],
+  playlist: Playlist,
+): Map<string, Song> => {
   const idMap = new Map<string, Song>();
-  songs.forEach((s: ISong) => {
+  songs.forEach((s) => {
     idMap.set(s.id, new Song(s));
   });
   // Mark this playlists songs as selected:
@@ -83,8 +88,7 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
 
   render() {
     // TODO: Change this to a ListView
-    const {route} = this.props;
-    const {playlist} = route.params;
+    const {playlist} = this.props.route.params;
     const {songMap} = this.state;
     const songList = [...songMap.values()].map((s: Song) => (
       <SongCard
@@ -92,7 +96,9 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
         song={s}
         isSelected={s.isSelected}
         onPress={(_e: any, id: string) => {
+          // Flip selection
           s.isSelected = !s.isSelected;
+          // Set changes to state
           songMap.set(id, s);
           this.setState({isDirty: true, songMap});
         }}

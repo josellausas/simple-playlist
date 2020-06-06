@@ -1,15 +1,13 @@
-export interface ISong {
-  id: string;
-  name: string;
-}
+import {Playlist} from '../objects/Playlist';
 
-export interface Playlist {
-  name: string;
-  songs: ISong[];
-}
 export interface PlaylistOnDisk {
   name: string;
   songIds: string[];
+}
+
+export interface SongOnDisk {
+  name: string;
+  id: string;
 }
 
 export type RootStackParamList = {
@@ -17,7 +15,6 @@ export type RootStackParamList = {
   Details: {playlist: Playlist; updateList: (list: Playlist) => void};
   Edit: {
     playlist: Playlist;
-    songs: ISong[];
     updateList: (list: Playlist) => void;
   };
 };

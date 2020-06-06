@@ -44,7 +44,7 @@ export const TestPlaylistsData = [
 ];
 
 export const PlaylistsData = [
-  {name: 'Summer', songs: []},
+  {name: 'Summer', songIds: []},
   {
     name: 'Chill',
     songIds: ['1', '3', '5', '7', '9'],

@@ -8,9 +8,16 @@ import {
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
+import {
+  RootStackParamList,
+  PlaylistOnDisk,
+  SongOnDisk,
+} from '../@types/Playlists';
 
-import {Playlist, RootStackParamList} from '../@types/Playlists';
-import {TestPlaylistsData} from '../sampleData';
+import {PlaylistsData, SongData} from '../sampleData';
+import {Song} from '../objects/Song';
+import {Playlist} from '../objects/Playlist';
+
 interface PlaylistsState {
   lists: Playlist[];
 }
@@ -20,13 +27,32 @@ interface PlaylistsProps {
   route: RouteProp<RootStackParamList, 'Playlists'>;
 }
 
+const loadSongs = (songs: SongOnDisk[]): Map<string, Song> => {
+  const idMap = new Map<string, Song>();
+  songs.forEach((s) => {
+    idMap.set(s.id, new Song(s));
+  });
+  return idMap;
+};
+
 export default class Playlists extends React.Component<
   PlaylistsProps,
   PlaylistsState
 > {
   state = {
-    lists: TestPlaylistsData as Playlist[],
+    lists: this.loadPlaylistsFromDisk(PlaylistsData),
   };
+  loadPlaylistsFromDisk(playlists: PlaylistOnDisk[]): Playlist[] {
+    const songs = loadSongs(SongData);
+    return playlists.map((p: PlaylistOnDisk) => {
+      const pobj = new Playlist(p.name);
+      p.songIds.forEach((sID) => {
+        pobj.addSongWithId(songs, sID);
+      });
+      return pobj;
+    });
+    // return TestPlaylistsData;
+  }
   updateList = (list: Playlist) => {
     const l = this.state.lists;
     l.forEach((pl) => {
