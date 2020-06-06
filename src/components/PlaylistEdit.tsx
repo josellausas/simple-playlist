@@ -19,7 +19,7 @@ interface DetailsState {
   isDirty: boolean;
 }
 
-const loadSongs = (
+const loadSongsAndMarkSelected = (
   songs: SongOnDisk[],
   playlist: Playlist,
 ): Map<string, Song> => {
@@ -27,7 +27,7 @@ const loadSongs = (
   songs.forEach((s) => {
     idMap.set(s.id, new Song(s));
   });
-  // Mark this playlists songs as selected:
+  // Mark the playlists songs as selected:
   playlist.songs.forEach((s) => {
     let song = idMap.get(s.id);
     if (song) {
@@ -39,7 +39,10 @@ const loadSongs = (
 
 export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   state = {
-    songMap: loadSongs(SongData, this.props.route.params.playlist),
+    songMap: loadSongsAndMarkSelected(
+      SongData,
+      this.props.route.params.playlist,
+    ),
     isDirty: false,
   };
 
