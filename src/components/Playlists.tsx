@@ -39,10 +39,15 @@ export default class Playlists extends React.Component<
   PlaylistsProps,
   PlaylistsState
 > {
-  onFocusHandleRelease: (() => void) | null = null;
   state = {
     lists: this.loadPlaylistsFromDisk(PlaylistsData),
   };
+  componentDidMount() {
+    console.log('Mount Playlists');
+  }
+  componentWillUnmount() {
+    console.log('Unmount Playlists');
+  }
   updateList = (list: Playlist) => {
     const l = this.state.lists;
     l.forEach((pl) => {

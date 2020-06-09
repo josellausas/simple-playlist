@@ -5,13 +5,21 @@ import {RouteProp} from '@react-navigation/native';
 
 import {RootStackParamList} from '../@types/Playlists';
 import {Song} from '../objects/Song';
+import {Playlist} from '../objects/Playlist';
 
 interface DetailsProps {
   navigation: StackNavigationProp<RootStackParamList, 'Details'>;
   route: RouteProp<RootStackParamList, 'Details'>;
 }
 
-export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
+interface DetailsState {
+  playlist: Playlist;
+}
+
+export default class PlaylistDetail extends React.Component<
+  DetailsProps,
+  DetailsState
+> {
   state = {
     playlist: this.props.route.params.playlist,
   };
@@ -36,10 +44,14 @@ export default class PlaylistDetail extends React.Component<DetailsProps, {}> {
     />
   );
   componentDidMount() {
+    console.log('Mounter PlaylistDeatail');
     this.props.navigation.setOptions({
       headerRight: this.editButton,
       headerLeft: this.backButton,
     });
+  }
+  componentWillUnmount() {
+    console.log('Unmount PlaylistDEtail');
   }
   render() {
     const {playlist} = this.state;

@@ -80,10 +80,14 @@ export class PlaylistEdit extends React.Component<DetailsProps, DetailsState> {
   );
 
   componentDidMount() {
+    console.log('Mount PlaylistEdit');
     this.props.navigation.setOptions({
       headerRight: this.saveButton,
       headerLeft: this.backButton,
     });
+  }
+  componentWillUnmount() {
+    console.log('Unmounted PlaylistEdit');
   }
 
   render() {
