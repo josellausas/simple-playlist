@@ -8,15 +8,7 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-  View,
-  Dimensions,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {StatusBar, Dimensions} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -62,39 +54,17 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const {screenHeight} = this.state;
     return (
       <NavigationContainer>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            contentContainerStyle={styles.contentContainer}
-            style={styles.scrollView}>
-            <View style={[styles.container, {height: screenHeight}]}>
-              <Stack.Navigator initialRouteName="Playlists">
-                <Stack.Screen name="Playlists" component={Playlists} />
-                <Stack.Screen name="Details" component={PlaylistDetails} />
-                <Stack.Screen name="Edit" component={PlaylistEdit} />
-              </Stack.Navigator>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+        <Stack.Navigator initialRouteName="Playlists">
+          <Stack.Screen name="Playlists" component={Playlists} />
+          <Stack.Screen name="Details" component={PlaylistDetails} />
+          <Stack.Screen name="Edit" component={PlaylistEdit} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  contentContainer: {
-    flexGrow: 1,
-  },
-  container: {
-    backgroundColor: '#ccc',
-  },
-});
 
 export default App;

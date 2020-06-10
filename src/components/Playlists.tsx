@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList, PlaylistOnDisk} from '../@types/Playlists';
@@ -38,15 +38,19 @@ export default class Playlists extends React.Component<Props, State> {
     return (
       <View style={styles.homeView}>
         <Text>{`${lists.length} Playlists`}</Text>
-        {lists.map((pl) => (
-          <PlaylistCard
-            onPress={(_e: any) => {
-              navigation.navigate('Details', {playlist: pl});
-            }}
-            playlist={pl}
-            key={pl.name}
-          />
-        ))}
+        <FlatList
+          data={lists}
+          keyExtractor={(item) => item.name}
+          renderItem={({item}) => (
+            <PlaylistCard
+              onPress={(_e: any) => {
+                navigation.navigate('Details', {playlist: item});
+              }}
+              playlist={item}
+              key={item.name}
+            />
+          )}
+        />
       </View>
     );
   }
