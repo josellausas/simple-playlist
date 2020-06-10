@@ -1,10 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
 import {RootStackParamList} from '../@types/Playlists';
-import {Song} from '../objects/Song';
 import {Playlist} from '../objects/Playlist';
 
 interface Props {
@@ -40,11 +39,15 @@ export default class PlaylistDetail extends React.Component<Props, State> {
     return (
       <View style={styles.songContainer}>
         <Text>{playlist.name}</Text>
-        {playlist.songs.map((s: Song) => (
-          <View style={styles.songCard} key={s.id}>
-            <Text>{`${s.name}`}</Text>
-          </View>
-        ))}
+        <FlatList
+          data={playlist.songs}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => (
+            <View style={styles.songCard} key={item.id}>
+              <Text>{`${item.name}`}</Text>
+            </View>
+          )}
+        />
       </View>
     );
   }
