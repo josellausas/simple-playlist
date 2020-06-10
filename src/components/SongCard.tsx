@@ -5,20 +5,19 @@ import {Song} from '../objects/Song';
 
 export interface SongCardProps {
   song: Song;
-  isSelected: boolean;
   key: string;
   onPress: Function;
 }
 
 export const SongCard = (props: SongCardProps) => {
-  const {song, isSelected, onPress} = props;
+  const {song, onPress} = props;
   return (
     <TouchableOpacity
       onPress={(e) => {
         onPress(e, song.id);
       }}>
       <View style={styles.songCard}>
-        <Text>{`${song.name} ${isSelected ? '✅' : ''}`}</Text>
+        <Text>{`${song.name} ${song.isSelected ? '✅' : ''}`}</Text>
       </View>
     </TouchableOpacity>
   );

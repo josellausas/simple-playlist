@@ -1,9 +1,10 @@
 import {Song} from './Song';
 
-export class Playlist {
+export class Playlist extends Object {
   name: string;
   songs: Song[];
   constructor(name: string) {
+    super();
     this.name = name;
     this.songs = [];
   }

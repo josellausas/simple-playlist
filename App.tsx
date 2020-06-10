@@ -73,11 +73,7 @@ class App extends React.Component<{}, AppState> {
             style={styles.scrollView}>
             <View style={[styles.container, {height: screenHeight}]}>
               <Stack.Navigator initialRouteName="Playlists">
-                <Stack.Screen
-                  name="Playlists"
-                  component={Playlists}
-                  initialParams={{playlist: null}}
-                />
+                <Stack.Screen name="Playlists" component={Playlists} />
                 <Stack.Screen name="Details" component={PlaylistDetails} />
                 <Stack.Screen name="Edit" component={PlaylistEdit} />
               </Stack.Navigator>
