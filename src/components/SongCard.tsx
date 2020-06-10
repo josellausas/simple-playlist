@@ -3,13 +3,13 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {Song} from '../objects/Song';
 
-export interface SongCardProps {
+interface Props {
   song: Song;
   key: string;
-  onPress: Function;
+  onPress: (_e: any, songId: string) => void;
 }
 
-export const SongCard = (props: SongCardProps) => {
+export const SongCard = (props: Props) => {
   const {song, onPress} = props;
   return (
     <TouchableOpacity

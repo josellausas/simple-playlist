@@ -36,7 +36,7 @@ interface AppState {
 const Stack = createStackNavigator<RootStackParamList>();
 
 class App extends React.Component<{}, AppState> {
-  isPortrait = () => {
+  isPortrait = (): boolean => {
     const screen = Dimensions.get('screen');
     return screen.height >= screen.width;
   };
@@ -94,12 +94,6 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#ccc',
-  },
-  titleContainer: {
-    minHeight: 80,
-    backgroundColor: '#888',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

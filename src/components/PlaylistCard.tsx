@@ -3,12 +3,12 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {Playlist} from '../objects/Playlist';
 
-interface PlaylistCardProps {
+interface Props {
   playlist: Playlist;
   onPress: (_e: any) => void;
 }
 
-export const PlaylistCard: React.SFC<PlaylistCardProps> = (props) => {
+export const PlaylistCard = (props: Props) => {
   const {playlist, onPress} = props;
   return (
     <TouchableOpacity onPress={onPress}>
