@@ -36,29 +36,15 @@ export class PlaylistEdit extends React.Component<Props, State> {
       }}
     />
   );
-  backButton = (): Element => (
-    <Button
-      title={'Back'}
-      onPress={() => {
-        if (this.state.isDirty) {
-          Alert.alert('Forgot to Save changes? Press again to cancel changes');
-          this.setState({isDirty: false});
-        } else {
-          this.props.navigation.goBack();
-        }
-      }}
-    />
-  );
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.saveButton,
-      headerLeft: this.backButton,
     });
   }
   render() {
     // TODO: Change this to a ListView
     const {playlist} = this.props.route.params;
-    const {songMap} = this.state;
+    const {songMap, isDirty} = this.state;
     const songList = [...songMap.values()].map((song: Song) => (
       <SongCard
         key={song.id}
@@ -72,7 +58,10 @@ export class PlaylistEdit extends React.Component<Props, State> {
     ));
     return (
       <View style={styles.songContainer}>
-        <Text>{`Edit ${playlist.name} (${songMap.size})`}</Text>
+        <Text>
+          {`Edit ${playlist.name} (${songMap.size}) 
+            ${isDirty ? '*(Unsaved changes)' : ''}`}
+        </Text>
         {songList}
       </View>
     );
