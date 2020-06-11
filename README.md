@@ -18,17 +18,18 @@ A Simple Playlist Mobile App
 
 # Install
 
-`npm install` or `yarn install`
-then `cd ios` and `pod install`
+1. Install
+Run `npm install` or `yarn install`
+
+2. Install Pods
+Change directory into `ios/` with `cd ios` and run: `pod install`
 
 ## Run iOS
-`npx react-native run-ios`
+`yarn ios`
 
 ## Run Android
-`npx react-native run-android`
+`yarn android`
 
-
-# Typescript Cheatsheet
 
 # Resources
 - https://github.com/facebook/react-native/issues/4099
