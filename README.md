@@ -6,7 +6,15 @@
 A Simple Playlist Mobile App
 
 ## Features
-- Typescript
+- Built with React Native
+- Uses Typescript
+- `Playlist` and `Song` objects are managed and propagated between screens
+- Users can view a list of playlists
+- Users can select a playlist to view songs
+- Users can edit a playlist to toggle songs on/off
+- Each playlist has a color
+
+## Extra Features
 - Automated deployments with Bitrise.io: [![Build Status](https://app.bitrise.io/app/b529b99f0b54b8d8/status.svg?token=C-OMMAY6_eRbstZAkgKd5g)](https://app.bitrise.io/app/b529b99f0b54b8d8)
 - Automated tests with github actions: ![Tests](https://github.com/josellausas/simple-playlist/workflows/Tests/badge.svg)
 
@@ -18,12 +26,11 @@ A Simple Playlist Mobile App
 
 # Install
 
-1. Install
-Run `npm install` or `yarn install`
+1. Run `npm install` or `yarn install`
+2. Change directory into `ios/`
+3. Run: `pod install`
 
-2. Install Pods
-Change directory into `ios/` with `cd ios` and run: `pod install`
-
+# Run App
 ## Run iOS
 `yarn ios`
 

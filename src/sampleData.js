@@ -38,4 +38,13 @@ export const SongData = [
   {id: '9', name: 'Smooth Criminal'},
   {id: '10', name: 'Horse with no name'},
   {id: '11', name: 'Dust in the wind'},
+  {id: '12', name: 'Hey Jude'},
+  {id: '13', name: 'Bohemian Rhapsody'},
+  {id: '14', name: 'Rock n Roll'},
+  {id: '15', name: 'Clocks'},
+  {id: '16', name: 'Under Pressure'},
+  {id: '17', name: 'Last Nite'},
+  {id: '18', name: 'Tin pan alley'},
+  {id: '19', name: 'Logical Song'},
+  {id: '20', name: 'Percussion Gun'},
 ];
