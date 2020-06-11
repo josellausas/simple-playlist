@@ -12,7 +12,9 @@ export interface SongOnDisk {
 }
 
 export type RootStackParamList = {
-  Playlists: {};
+  Playlists: {
+    playlist: Playlist | null;
+  };
   Details: {
     playlist: Playlist;
   };

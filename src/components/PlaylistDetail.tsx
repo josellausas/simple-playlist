@@ -20,6 +20,17 @@ export default class PlaylistDetail extends React.Component<Props, State> {
     playlist: this.props.route.params.playlist,
   };
 
+  backButton = () => (
+    <Button
+      onPress={() => {
+        this.props.navigation.navigate('Playlists', {
+          playlist: this.state.playlist,
+        });
+      }}
+      title="Back"
+    />
+  );
+
   editButton = (): Element => (
     <View style={styles.headerButton}>
       <Button
@@ -36,6 +47,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.editButton,
+      headerLeft: this.backButton,
       title: this.state.playlist.name,
     });
   }
