@@ -10,6 +10,15 @@ interface Props {
 }
 
 export const SongCard = (props: Props) => {
+  const {song} = props;
+  return (
+    <View style={styles.songCard}>
+      <Text style={styles.content}>{song.name}</Text>
+    </View>
+  );
+};
+
+export const SongButtonCard = (props: Props) => {
   const {song, onPress} = props;
 
   return (
@@ -18,7 +27,9 @@ export const SongCard = (props: Props) => {
         onPress(e, song.id);
       }}>
       <View style={styles.songCard}>
-        <Text>{`${song.name} ${song.isSelected ? '✅' : ''}`}</Text>
+        <Text style={styles.content}>{`${song.name} ${
+          song.isSelected ? '✅' : ''
+        }`}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -29,5 +40,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     minHeight: 56,
     margin: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  content: {
+    fontSize: 18,
   },
 });

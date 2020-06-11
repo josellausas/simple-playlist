@@ -5,7 +5,7 @@ import {RouteProp} from '@react-navigation/native';
 
 import {RootStackParamList} from '../@types/Playlists';
 import {SongData} from '../sampleData';
-import {SongCard} from './SongCard';
+import {SongButtonCard} from './SongCard';
 import {Song} from '../objects/Song';
 import {CreateSelectedSongMap} from '../helpers';
 
@@ -55,15 +55,15 @@ export class PlaylistEdit extends React.Component<Props, State> {
 
     return (
       <View style={backgroundStyle}>
-        <Text>
-          {`Edit ${playlist.name} (${songMap.size}) 
+        <Text style={styles.title}>
+          {`${playlist.name}
             ${isDirty ? '*(Unsaved changes)' : ''}`}
         </Text>
         <FlatList
           data={songList}
           keyExtractor={(item) => item.id}
           renderItem={({item}) => (
-            <SongCard
+            <SongButtonCard
               key={item.id}
               song={item}
               onPress={(_e: any, id: string) => {
@@ -82,5 +82,9 @@ export class PlaylistEdit extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   headerButton: {
     marginRight: 8,
+  },
+  title: {
+    fontSize: 32,
+    marginLeft: 10,
   },
 });

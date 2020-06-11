@@ -5,6 +5,7 @@ import {RouteProp} from '@react-navigation/native';
 
 import {RootStackParamList} from '../@types/Playlists';
 import {Playlist} from '../objects/Playlist';
+import {SongCard} from './SongCard';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, 'Details'>;
@@ -63,11 +64,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
         <FlatList
           data={playlist.songs}
           keyExtractor={(item) => item.id}
-          renderItem={({item}) => (
-            <View style={styles.songCard} key={item.id}>
-              <Text style={styles.songTitle}>{`${item.name}`}</Text>
-            </View>
-          )}
+          renderItem={({item}) => <SongCard song={item} key={item.id} />}
         />
       </View>
     );
