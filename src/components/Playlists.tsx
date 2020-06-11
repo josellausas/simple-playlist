@@ -59,5 +59,6 @@ export default class Playlists extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   homeView: {
     backgroundColor: '#aaa',
+    flex: 1,
   },
 });

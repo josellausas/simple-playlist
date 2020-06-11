@@ -46,7 +46,7 @@ export class PlaylistEdit extends React.Component<Props, State> {
     const {playlist} = this.props.route.params;
     const {songMap, isDirty} = this.state;
     const songList = [...songMap.values()];
-    const backgroundStyle = {backgroundColor: playlist.color};
+    const backgroundStyle = {backgroundColor: playlist.color, flex: 1};
     return (
       <View style={backgroundStyle}>
         <Text>
@@ -56,6 +56,7 @@ export class PlaylistEdit extends React.Component<Props, State> {
         <FlatList
           data={songList}
           keyExtractor={(item) => item.id}
+          contentContainerStyle={{flexGrow: 1}}
           renderItem={({item}) => (
             <SongCard
               key={item.id}

@@ -36,7 +36,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   }
   render() {
     const {playlist} = this.state;
-    const backgroundStyle = {backgroundColor: playlist.color};
+    const backgroundStyle = {backgroundColor: playlist.color, flex: 1};
     return (
       <View style={backgroundStyle}>
         <Text>{playlist.name}</Text>
