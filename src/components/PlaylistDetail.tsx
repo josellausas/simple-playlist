@@ -20,14 +20,16 @@ export default class PlaylistDetail extends React.Component<Props, State> {
     playlist: this.props.route.params.playlist,
   };
   editButton = (): Element => (
-    <Button
-      onPress={() => {
-        this.props.navigation.navigate('Edit', {
-          playlist: this.state.playlist,
-        });
-      }}
-      title="Edit"
-    />
+    <View style={styles.headerButton}>
+      <Button
+        onPress={() => {
+          this.props.navigation.navigate('Edit', {
+            playlist: this.state.playlist,
+          });
+        }}
+        title="Edit"
+      />
+    </View>
   );
   componentDidMount() {
     this.props.navigation.setOptions({
@@ -47,7 +49,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
           keyExtractor={(item) => item.id}
           renderItem={({item}) => (
             <View style={styles.songCard} key={item.id}>
-              <Text>{`${item.name}`}</Text>
+              <Text style={styles.songTitle}>{`${item.name}`}</Text>
             </View>
           )}
         />
@@ -58,7 +60,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   songCard: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#abc',
     minHeight: 40,
     margin: 20,
     alignItems: 'center',
@@ -72,5 +74,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontStyle: 'italic',
     marginLeft: 10,
+  },
+  headerButton: {
+    marginRight: 8,
+  },
+  songTitle: {
+    fontSize: 20,
   },
 });

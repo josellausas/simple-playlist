@@ -25,16 +25,18 @@ export class PlaylistEdit extends React.Component<Props, State> {
     isDirty: false,
   };
   saveButton = (): Element => (
-    <Button
-      title="Save"
-      onPress={() => {
-        const {playlist} = this.props.route.params;
-        const {songMap} = this.state;
-        playlist.songs = [...songMap.values()].filter((s) => s.isSelected);
-        this.setState({isDirty: false});
-        this.props.navigation.navigate('Details', {playlist});
-      }}
-    />
+    <View style={styles.headerButton}>
+      <Button
+        title="Save"
+        onPress={() => {
+          const {playlist} = this.props.route.params;
+          const {songMap} = this.state;
+          playlist.songs = [...songMap.values()].filter((s) => s.isSelected);
+          this.setState({isDirty: false});
+          this.props.navigation.navigate('Details', {playlist});
+        }}
+      />
+    </View>
   );
   componentDidMount() {
     this.props.navigation.setOptions({
@@ -72,3 +74,9 @@ export class PlaylistEdit extends React.Component<Props, State> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  headerButton: {
+    marginRight: 8,
+  },
+});
