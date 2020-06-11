@@ -72,4 +72,3 @@ export default class PlaylistDetail extends React.Component<Props, State> {
     );
   }
 }
-
