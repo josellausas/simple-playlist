@@ -3,13 +3,15 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {Song} from '../objects/Song';
 
-interface Props {
+interface SongCardProps {
   song: Song;
-  key: string;
+}
+interface SongButtonCardProps {
+  song: Song;
   onPress: (_e: any, songId: string) => void;
 }
 
-export const SongCard = (props: Props) => {
+export const SongCard = (props: SongCardProps) => {
   const {song} = props;
   return (
     <View style={styles.songCard}>
@@ -18,7 +20,7 @@ export const SongCard = (props: Props) => {
   );
 };
 
-export const SongButtonCard = (props: Props) => {
+export const SongButtonCard = (props: SongButtonCardProps) => {
   const {song, onPress} = props;
 
   return (

@@ -8,6 +8,7 @@ import {PlaylistsData, SongData} from '../sampleData';
 import {Playlist} from '../objects/Playlist';
 import {PlaylistCard} from './PlaylistCard';
 import {CreateSongMap} from '../helpers';
+import AppTheme from '../AppTheme';
 
 interface State {
   lists: Playlist[];
@@ -39,7 +40,7 @@ export default class Playlists extends React.Component<Props, State> {
     const {navigation} = this.props;
     return (
       <View style={styles.homeView}>
-        <Text style={styles.title}>{`${lists.length} Playlists`}</Text>
+        <Text style={AppTheme.title}>{`${lists.length} Playlists`}</Text>
         <FlatList
           data={lists}
           keyExtractor={(item) => item.name}
@@ -62,8 +63,5 @@ const styles = StyleSheet.create({
   homeView: {
     backgroundColor: '#aaa',
     flex: 1,
-  },
-  title: {
-    fontSize: 24,
   },
 });

@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
+import {View, Text, Button, FlatList} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
 import {RootStackParamList} from '../@types/Playlists';
 import {Playlist} from '../objects/Playlist';
 import {SongCard} from './SongCard';
+import AppTheme from '../AppTheme';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, 'Details'>;
@@ -33,7 +34,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   );
 
   editButton = (): Element => (
-    <View style={styles.headerButton}>
+    <View style={AppTheme.headerButton}>
       <Button
         onPress={() => {
           this.props.navigation.navigate('Edit', {
@@ -59,8 +60,9 @@ export default class PlaylistDetail extends React.Component<Props, State> {
 
     return (
       <View style={backgroundStyle}>
-        <Text style={styles.title}>{playlist.name}</Text>
-        <Text style={styles.subtitle}>{`${playlist.songs.length} songs`}</Text>
+        <Text style={AppTheme.title}>{playlist.name}</Text>
+        <Text
+          style={AppTheme.subtitle}>{`${playlist.songs.length} songs`}</Text>
         <FlatList
           data={playlist.songs}
           keyExtractor={(item) => item.id}
@@ -71,27 +73,3 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
-  songCard: {
-    backgroundColor: '#abc',
-    minHeight: 56,
-    margin: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 32,
-    marginLeft: 10,
-  },
-  subtitle: {
-    fontSize: 24,
-    fontStyle: 'italic',
-    marginLeft: 10,
-  },
-  headerButton: {
-    marginRight: 8,
-  },
-  songTitle: {
-    fontSize: 20,
-  },
-});

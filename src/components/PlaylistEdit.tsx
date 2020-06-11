@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
+import {View, Text, Button, FlatList} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
@@ -8,6 +8,7 @@ import {SongData} from '../sampleData';
 import {SongButtonCard} from './SongCard';
 import {Song} from '../objects/Song';
 import {CreateSelectedSongMap} from '../helpers';
+import AppTheme from '../AppTheme';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, 'Edit'>;
@@ -26,7 +27,7 @@ export class PlaylistEdit extends React.Component<Props, State> {
   };
 
   saveButton = (): Element => (
-    <View style={styles.headerButton}>
+    <View style={AppTheme.headerButton}>
       <Button
         title="Save"
         onPress={() => {
@@ -43,7 +44,7 @@ export class PlaylistEdit extends React.Component<Props, State> {
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.saveButton,
-      title: `Edit: ${this.props.route.params.playlist.name}`,
+      title: this.props.route.params.playlist.name,
     });
   }
 
@@ -55,10 +56,10 @@ export class PlaylistEdit extends React.Component<Props, State> {
 
     return (
       <View style={backgroundStyle}>
-        <Text style={styles.title}>
-          {`${playlist.name}
-            ${isDirty ? '*(Unsaved changes)' : ''}`}
-        </Text>
+        <Text style={AppTheme.title}>{`Edit: ${playlist.name}`}</Text>
+        <Text style={AppTheme.subtitle}>{`${
+          isDirty ? '*(Unsaved changes)' : ''
+        }`}</Text>
         <FlatList
           data={songList}
           keyExtractor={(item) => item.id}
@@ -78,13 +79,3 @@ export class PlaylistEdit extends React.Component<Props, State> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  headerButton: {
-    marginRight: 8,
-  },
-  title: {
-    fontSize: 32,
-    marginLeft: 10,
-  },
-});
