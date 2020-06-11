@@ -14,9 +14,9 @@ export const PlaylistCard = (props: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.playlistCard, backColor]}>
-        <Text>{playlist.name}</Text>
+        <Text style={styles.title}>{playlist.name}</Text>
         <View style={styles.songsContainer}>
-          <Text>{`${playlist.songs.length} songs`}</Text>
+          <Text style={styles.content}>{`${playlist.songs.length} songs`}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -26,10 +26,19 @@ export const PlaylistCard = (props: Props) => {
 const styles = StyleSheet.create({
   playlistCard: {
     margin: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   songsContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 40,
+  },
+  title: {
+    fontSize: 20,
+  },
+  content: {
+    fontSize: 16,
+    fontStyle: 'italic',
   },
 });

@@ -39,10 +39,10 @@ export class PlaylistEdit extends React.Component<Props, State> {
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.saveButton,
+      title: `Edit: ${this.props.route.params.playlist.name}`,
     });
   }
   render() {
-    // TODO: Change this to a ListView
     const {playlist} = this.props.route.params;
     const {songMap, isDirty} = this.state;
     const songList = [...songMap.values()];
@@ -56,7 +56,6 @@ export class PlaylistEdit extends React.Component<Props, State> {
         <FlatList
           data={songList}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{flexGrow: 1}}
           renderItem={({item}) => (
             <SongCard
               key={item.id}
@@ -73,4 +72,3 @@ export class PlaylistEdit extends React.Component<Props, State> {
     );
   }
 }
-

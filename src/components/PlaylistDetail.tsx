@@ -32,6 +32,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.editButton,
+      title: this.state.playlist.name,
     });
   }
   render() {
@@ -39,7 +40,8 @@ export default class PlaylistDetail extends React.Component<Props, State> {
     const backgroundStyle = {backgroundColor: playlist.color, flex: 1};
     return (
       <View style={backgroundStyle}>
-        <Text>{playlist.name}</Text>
+        <Text style={styles.title}>{playlist.name}</Text>
+        <Text style={styles.subtitle}>{`${playlist.songs.length} songs`}</Text>
         <FlatList
           data={playlist.songs}
           keyExtractor={(item) => item.id}
@@ -59,5 +61,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
     minHeight: 40,
     margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 32,
+    marginLeft: 10,
+  },
+  subtitle: {
+    fontSize: 24,
+    fontStyle: 'italic',
+    marginLeft: 10,
   },
 });

@@ -37,7 +37,7 @@ export default class Playlists extends React.Component<Props, State> {
     const {navigation} = this.props;
     return (
       <View style={styles.homeView}>
-        <Text>{`${lists.length} Playlists`}</Text>
+        <Text style={styles.title}>{`${lists.length} Playlists`}</Text>
         <FlatList
           data={lists}
           keyExtractor={(item) => item.name}
@@ -60,5 +60,8 @@ const styles = StyleSheet.create({
   homeView: {
     backgroundColor: '#aaa',
     flex: 1,
+  },
+  title: {
+    fontSize: 24,
   },
 });
