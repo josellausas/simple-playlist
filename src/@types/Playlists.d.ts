@@ -3,6 +3,7 @@ import {Playlist} from '../objects/Playlist';
 export interface PlaylistOnDisk {
   name: string;
   songIds: string[];
+  color: string;
 }
 
 export interface SongOnDisk {

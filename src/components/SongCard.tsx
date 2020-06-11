@@ -25,7 +25,7 @@ export const SongCard = (props: Props) => {
 
 const styles = StyleSheet.create({
   songCard: {
-    backgroundColor: '#aaa',
+    backgroundColor: '#ccc',
     minHeight: 40,
     margin: 20,
   },

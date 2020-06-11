@@ -36,8 +36,9 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   }
   render() {
     const {playlist} = this.state;
+    const backgroundStyle = {backgroundColor: playlist.color};
     return (
-      <View style={styles.songContainer}>
+      <View style={backgroundStyle}>
         <Text>{playlist.name}</Text>
         <FlatList
           data={playlist.songs}
@@ -54,11 +55,8 @@ export default class PlaylistDetail extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  songContainer: {
-    backgroundColor: '#efe',
-  },
   songCard: {
-    backgroundColor: '#aaa',
+    backgroundColor: '#ddd',
     minHeight: 40,
     margin: 20,
   },

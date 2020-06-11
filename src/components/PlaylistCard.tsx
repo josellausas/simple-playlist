@@ -10,9 +10,10 @@ interface Props {
 
 export const PlaylistCard = (props: Props) => {
   const {playlist, onPress} = props;
+  const backColor = {backgroundColor: playlist.color};
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.playlistCard}>
+      <View style={[styles.playlistCard, backColor]}>
         <Text>{playlist.name}</Text>
         <View style={styles.songsContainer}>
           <Text>{`${playlist.songs.length} songs`}</Text>
@@ -25,12 +26,10 @@ export const PlaylistCard = (props: Props) => {
 const styles = StyleSheet.create({
   playlistCard: {
     margin: 14,
-    backgroundColor: '#faa',
   },
   songsContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1aa',
     minHeight: 40,
   },
 });

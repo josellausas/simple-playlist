@@ -2,22 +2,27 @@ export const PlaylistsData = [
   {
     name: 'Summer',
     songIds: ['1', '2', '3'],
+    color: '#2AC4A3',
   },
   {
     name: 'Chill',
     songIds: ['1', '3', '5', '7', '9'],
+    color: '#5B3984',
   },
   {
     name: 'Driving',
     songIds: ['2', '4', '6', '8', '10'],
+    color: '#F9C341',
   },
   {
     name: '2019',
     songIds: ['1', '2', '3', '4', '5'],
+    color: '#E84A4B',
   },
   {
     name: 'Programming',
     songIds: ['6', '7', '8', '9', '10'],
+    color: '#A3D53B',
   },
 ];
 

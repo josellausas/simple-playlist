@@ -46,8 +46,9 @@ export class PlaylistEdit extends React.Component<Props, State> {
     const {playlist} = this.props.route.params;
     const {songMap, isDirty} = this.state;
     const songList = [...songMap.values()];
+    const backgroundStyle = {backgroundColor: playlist.color};
     return (
-      <View style={styles.songContainer}>
+      <View style={backgroundStyle}>
         <Text>
           {`Edit ${playlist.name} (${songMap.size}) 
             ${isDirty ? '*(Unsaved changes)' : ''}`}
@@ -72,8 +73,3 @@ export class PlaylistEdit extends React.Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
-  songContainer: {
-    backgroundColor: '#efe',
-  },
-});

@@ -25,7 +25,7 @@ export default class Playlists extends React.Component<Props, State> {
   loadPlaylists(): Playlist[] {
     const songs = CreateSongMap(SongData);
     return PlaylistsData.map((p: PlaylistOnDisk) => {
-      const pobj = new Playlist(p.name);
+      const pobj = new Playlist(p.name, p.color);
       p.songIds.forEach((sID) => {
         pobj.addSongWithId(songs, sID);
       });
