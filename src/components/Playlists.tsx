@@ -22,6 +22,7 @@ export default class Playlists extends React.Component<Props, State> {
   state = {
     lists: this.loadPlaylists(),
   };
+
   loadPlaylists(): Playlist[] {
     const songs = CreateSongMap(SongData);
     return PlaylistsData.map((p: PlaylistOnDisk) => {
@@ -32,6 +33,7 @@ export default class Playlists extends React.Component<Props, State> {
       return pobj;
     });
   }
+
   render() {
     const {lists} = this.state;
     const {navigation} = this.props;

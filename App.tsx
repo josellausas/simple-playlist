@@ -18,13 +18,12 @@ import {RootStackParamList} from './src/@types/Playlists';
 import PlaylistDetails from './src/components/PlaylistDetail';
 import {PlaylistEdit} from './src/components/PlaylistEdit';
 
-declare const global: {HermesInternal: null | {}};
-
 interface AppState {
   screenHeight: number;
   screenOrientation: string;
 }
 
+declare const global: {HermesInternal: null | {}};
 const Stack = createStackNavigator<RootStackParamList>();
 
 class App extends React.Component<{}, AppState> {

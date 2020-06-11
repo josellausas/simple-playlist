@@ -19,6 +19,7 @@ export default class PlaylistDetail extends React.Component<Props, State> {
   state = {
     playlist: this.props.route.params.playlist,
   };
+
   editButton = (): Element => (
     <View style={styles.headerButton}>
       <Button
@@ -31,15 +32,18 @@ export default class PlaylistDetail extends React.Component<Props, State> {
       />
     </View>
   );
+
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.editButton,
       title: this.state.playlist.name,
     });
   }
+
   render() {
     const {playlist} = this.state;
     const backgroundStyle = {backgroundColor: playlist.color, flex: 1};
+
     return (
       <View style={backgroundStyle}>
         <Text style={styles.title}>{playlist.name}</Text>
@@ -61,8 +65,8 @@ export default class PlaylistDetail extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   songCard: {
     backgroundColor: '#abc',
-    minHeight: 40,
-    margin: 20,
+    minHeight: 56,
+    margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

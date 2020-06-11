@@ -11,6 +11,7 @@ interface Props {
 export const PlaylistCard = (props: Props) => {
   const {playlist, onPress} = props;
   const backColor = {backgroundColor: playlist.color};
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.playlistCard, backColor]}>

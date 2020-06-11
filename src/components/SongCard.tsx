@@ -11,6 +11,7 @@ interface Props {
 
 export const SongCard = (props: Props) => {
   const {song, onPress} = props;
+
   return (
     <TouchableOpacity
       onPress={(e) => {
@@ -26,7 +27,7 @@ export const SongCard = (props: Props) => {
 const styles = StyleSheet.create({
   songCard: {
     backgroundColor: '#ccc',
-    minHeight: 40,
-    margin: 20,
+    minHeight: 56,
+    margin: 22,
   },
 });

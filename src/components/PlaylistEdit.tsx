@@ -24,6 +24,7 @@ export class PlaylistEdit extends React.Component<Props, State> {
     songMap: CreateSelectedSongMap(SongData, this.props.route.params.playlist),
     isDirty: false,
   };
+
   saveButton = (): Element => (
     <View style={styles.headerButton}>
       <Button
@@ -38,17 +39,20 @@ export class PlaylistEdit extends React.Component<Props, State> {
       />
     </View>
   );
+
   componentDidMount() {
     this.props.navigation.setOptions({
       headerRight: this.saveButton,
       title: `Edit: ${this.props.route.params.playlist.name}`,
     });
   }
+
   render() {
     const {playlist} = this.props.route.params;
     const {songMap, isDirty} = this.state;
     const songList = [...songMap.values()];
     const backgroundStyle = {backgroundColor: playlist.color, flex: 1};
+
     return (
       <View style={backgroundStyle}>
         <Text>
